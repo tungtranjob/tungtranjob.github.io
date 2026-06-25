@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Diary, Journal with Lock — Private Offline Diary App</title>
+  <meta name="description" content="My Diary, Journal with Lock is a free offline diary journal with a lock. Record daily diaries, secret thoughts, journeys, moods, and private moments — protected by a password." />
+  <meta name="theme-color" content="#7c5cff" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="My Diary, Journal with Lock" />
+  <meta property="og:description" content="A free offline diary journal with a lock. Record diaries, moods, journeys and private moments — protected by a password." />
+  <meta property="og:image" content="https://play-lh.googleusercontent.com/XJbtCSb6AB5kRb1cp0PhxQUG8ksDJPlTUf1sAwlauz8wPgO80Xe45n9QyWXg_Wc_RnqDXefV0EqQ_51wnlGQ1A=w5120-h2880-rw" />
+
+  <style>
+    :root {
+      --bg: #0f0c1d;
+      --bg-soft: #181430;
+      --card: #1f1b3a;
+      --text: #f3f1ff;
+      --muted: #b7b2d8;
+      --brand: #7c5cff;
+      --brand-2: #c084fc;
+      --accent: #ff7eb3;
+      --radius: 18px;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { width: min(1120px, 92%); margin: 0 auto; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(15, 12, 29, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .logo .mark {
+      width: 38px; height: 38px;
+      display: grid; place-items: center;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      box-shadow: 0 8px 22px rgba(124, 92, 255, 0.45);
+      font-size: 20px;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: 0.95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links .cta {
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    @media (max-width: 720px) { .nav-links a:not(.cta) { display: none; } }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding: 90px 0 70px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% 0 auto 0;
+      height: 600px;
+      background: radial-gradient(60% 60% at 50% 0%, rgba(124,92,255,.45), transparent 70%),
+                  radial-gradient(40% 40% at 80% 10%, rgba(255,126,179,.35), transparent 70%);
+      filter: blur(20px);
+      z-index: -1;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+      background: linear-gradient(120deg, #fff 30%, var(--brand-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto 38px;
+    }
+    .btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      box-shadow: 0 14px 34px rgba(124, 92, 255, 0.5);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(124,92,255,.6); }
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.12); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 70px 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+    .section-head h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .section-head p { color: var(--muted); font-size: 1.05rem; }
+
+    /* ---------- Features ---------- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+    .feature {
+      background: linear-gradient(180deg, var(--card), var(--bg-soft));
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+      transition: transform .25s, border-color .25s;
+    }
+    .feature:hover { transform: translateY(-6px); border-color: rgba(124, 92, 255, 0.5); }
+    .feature .ico {
+      width: 52px; height: 52px;
+      display: grid; place-items: center;
+      border-radius: 14px;
+      font-size: 26px;
+      background: rgba(124, 92, 255, 0.15);
+      margin-bottom: 18px;
+    }
+    .feature h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .feature p { color: var(--muted); font-size: 0.97rem; }
+
+    /* ---------- Screenshots ---------- */
+    .shots {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 6px 6px 26px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .shots::-webkit-scrollbar { height: 8px; }
+    .shots::-webkit-scrollbar-thumb { background: rgba(124,92,255,.5); border-radius: 999px; }
+    .shot {
+      flex: 0 0 auto;
+      width: 220px;
+      scroll-snap-align: center;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+      cursor: zoom-in;
+      transition: transform .25s;
+      background: var(--card);
+    }
+    .shot:hover { transform: translateY(-8px) scale(1.02); }
+    .shot img { display: block; width: 100%; height: auto; }
+
+    /* ---------- CTA ---------- */
+    .final-cta {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(255,126,179,.14));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 60px 30px;
+    }
+    .final-cta h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 16px; }
+    .final-cta p { color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 36px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .foot a { color: var(--muted); }
+    .foot a:hover { color: var(--text); }
+
+    /* ---------- Lightbox ---------- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 6, 18, 0.92);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 30px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 86vh;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .lightbox .close {
+      position: absolute;
+      top: 22px; right: 26px;
+      font-size: 34px;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .lightbox .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 44px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 18px;
+      opacity: .8;
+    }
+    .lightbox .arrow:hover { opacity: 1; }
+    .lightbox .prev { left: 10px; }
+    .lightbox .next { right: 10px; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+    .reveal.show { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <div class="logo">
+        <span class="mark">🔒</span>
+        <span>My Diary</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#about">About</a>
+        <a class="cta" href="#download">Get the app</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge">✨ Free • Offline • Private</span>
+      <h1>My Diary, Journal<br />with Lock</h1>
+      <p class="lead">
+        A free offline diary journal with a lock. Record daily diaries, secret
+        thoughts, journeys, moods, and any private moments — kept safe behind
+        your own password.
+      </p>
+      <div class="btns">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=diaryjournal.diarywithlock.secretdiary.mydiary.journal.diary" target="_blank" rel="noopener">📥 Download now</a>
+        <a class="btn btn-ghost" href="#screenshots">👀 See screenshots</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Everything your private journal needs</h2>
+        <p>Beautiful, secure, and yours alone — works completely offline.</p>
+      </div>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="ico">🔐</div>
+          <h3>Password Lock</h3>
+          <p>Set a diary password to protect the security of your memories and private journal entries.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico">🖼️</div>
+          <h3>Photos &amp; Stickers</h3>
+          <p>Add pictures, stickers, and decorations to make every entry more vivid and personal.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico">🎨</div>
+          <h3>Themes &amp; Fonts</h3>
+          <p>Choose from a variety of themes and fonts to give your diary your own unique style.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico">😊</div>
+          <h3>Moods &amp; Journeys</h3>
+          <p>Track your daily moods, journeys, and feelings — capture the story of every day.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico">📴</div>
+          <h3>Fully Offline</h3>
+          <p>No account required. Your data stays on your device, private by default.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico">☁️</div>
+          <h3>Backup &amp; Restore</h3>
+          <p>Easily back up and restore your memories so you never lose a single moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section id="screenshots">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Take a look inside</h2>
+        <p>Tap any screenshot to view it full size.</p>
+      </div>
+      <div class="shots reveal" id="gallery"><!-- filled by JS --></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap">
+      <div class="final-cta reveal">
+        <h2>Your memories, kept private</h2>
+        <p>
+          My Diary, Journal with Lock helps you write down secret thoughts and
+          everyday moments, then keeps them locked away just for you. Add photos,
+          themes, stickers and fonts to make each entry truly yours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download CTA -->
+  <section id="download">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Get My Diary today</h2>
+        <p>Start your private, beautiful journal in seconds.</p>
+        <div class="btns" style="margin-top: 28px;">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=diaryjournal.diarywithlock.secretdiary.mydiary.journal.diary" target="_blank" rel="noopener">📥 Download on Google Play</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© <span id="year"></span> My Diary, Journal with Lock. All rights reserved.</span>
+      <span>
+        <a href="#features">Features</a> &nbsp;·&nbsp;
+        <a href="#screenshots">Screenshots</a> &nbsp;·&nbsp;
+        <a href="#download">Download</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="lbClose">&times;</span>
+    <span class="arrow prev" id="lbPrev">&#8249;</span>
+    <img src="" alt="Screenshot" id="lbImg" />
+    <span class="arrow next" id="lbNext">&#8250;</span>
+  </div>
+
+  <script>
+    // --- Screenshots ---
+    const shots = [
+      "https://play-lh.googleusercontent.com/XJbtCSb6AB5kRb1cp0PhxQUG8ksDJPlTUf1sAwlauz8wPgO80Xe45n9QyWXg_Wc_RnqDXefV0EqQ_51wnlGQ1A=w5120-h2880-rw",
+      "https://play-lh.googleusercontent.com/3ueIZj1QdIw4hMkEsw3V3rdBKulflizQLS-hWGTCW05hTClxF1SqfJeQ3Xlh88rKvYtzNB2gMfVJC5vlQ4bmDQ=w5120-h2880-rw",
+      "https://play-lh.googleusercontent.com/ao1GpnyUhAwNOpOa0q7nfLJhp8Adyn0EyoFngL637zVE8OLfs-6QiaeWcl7w3kD1Zt6WG6kOw1u2KJGyag_Z=w5120-h2880-rw",
+      "https://play-lh.googleusercontent.com/uKf_OVSDbUATMKq4CxAtC0ZJLXmtZ7zTd-IOZ6zJeBcMAARVQnh3sU9_QbFPnHwrfceN6EegJpprEVwBT_gXCF0=w5120-h2880-rw",
+      "https://play-lh.googleusercontent.com/b-EyrbfnG8yhA_RnOZUbOw-sV9G0aoL_eCrIEAqitphRaDLu0_xmnEdrSjFl5fDNRBBI8vmstzie_6Z9GOZIBA=w5120-h2880-rw",
+      "https://play-lh.googleusercontent.com/f7R_j6w1w6qrP1v8pu5uPNsbbcdWxju872h-7WNptipTYWWqgwZrCXPhhblffQkDmoF2sUJnHGUr_hhe9DfNFA=w5120-h2880-rw",
+      "https://play-lh.googleusercontent.com/ggaxkmqeVzskm7GJcldI5TowschHxCO9ce_-QzAE77X9KPohHs4KxN-cw6VLnoiSkT4b8Xnjlb4xji7Qu_iFOg=w5120-h2880-rw",
+      "https://play-lh.googleusercontent.com/XshJO5WEbk6VwwqkjTu4V0glILXlSJt_JcUPkp-7zV5lgpRFh_e1qJTcdTan4emc8zbA8LrKGbWhgFpcFtu6mQ=w5120-h2880-rw"
+    ];
+
+    const gallery = document.getElementById("gallery");
+    shots.forEach((src, i) => {
+      const fig = document.createElement("div");
+      fig.className = "shot";
+      fig.innerHTML = `<img loading="lazy" src="${src}" alt="My Diary screenshot ${i + 1}" />`;
+      fig.addEventListener("click", () => openLightbox(i));
+      gallery.appendChild(fig);
+    });
+
+    // --- Lightbox ---
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    let current = 0;
+
+    function openLightbox(i) {
+      current = i;
+      lbImg.src = shots[i];
+      lb.classList.add("open");
+    }
+    function close() { lb.classList.remove("open"); }
+    function show(delta) {
+      current = (current + delta + shots.length) % shots.length;
+      lbImg.src = shots[current];
+    }
+
+    document.getElementById("lbClose").addEventListener("click", close);
+    document.getElementById("lbPrev").addEventListener("click", (e) => { e.stopPropagation(); show(-1); });
+    document.getElementById("lbNext").addEventListener("click", (e) => { e.stopPropagation(); show(1); });
+    lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+    document.addEventListener("keydown", (e) => {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") show(-1);
+      if (e.key === "ArrowRight") show(1);
+    });
+
+    // --- Scroll reveal ---
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) en.target.classList.add("show"); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+    // --- Year ---
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
