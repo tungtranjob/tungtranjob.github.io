@@ -1,0 +1,93 @@
+PRIVACY POLICY
+
+App Name: My Diary, Journal with Lock
+Last updated: June 25, 2026
+
+Thank you for using My Diary, Journal with Lock ("the App", "we", "us", or "our").
+Your privacy is extremely important to us. This Privacy Policy explains how the App
+handles your information.
+
+My Diary, Journal with Lock is a free, OFFLINE diary and journal application. The App
+does NOT collect, store on remote servers, transmit, or share any personal data or
+user data off your device.
+
+
+1. INFORMATION WE DO NOT COLLECT
+
+We want to be clear and transparent: the App does NOT collect any personal information.
+Specifically, we do NOT collect, transmit, or share:
+
+- Personal information (name, email address, phone number, etc.)
+- Location data
+- Device identifiers or advertising IDs
+- Usage or analytics data
+- Contacts, messages, or any account information
+- Any other personal or sensitive user data
+
+The App works fully offline. No registration, login, or account is required to use it.
+
+
+2. YOUR DIARY CONTENT STAYS ON YOUR DEVICE
+
+All content you create in the App — including diaries, journals, secret thoughts,
+moods, pictures, themes, stickers, fonts, and any private moments — is stored LOCALLY
+on your device only.
+
+We do not have access to your diary content. This data is never uploaded to our servers,
+never sent over the internet, and is never shared with us or any third party.
+
+
+3. APP PERMISSIONS
+
+The App may request certain device permissions only to provide its features, and only
+with your action:
+
+- Photos / Storage: to let you add pictures to your diary entries and to back up or
+  restore your data locally. These files remain on your device.
+
+The App does not use these permissions to collect or transmit any data off your device.
+
+
+4. BACKUP AND RESTORE
+
+The App allows you to back up and restore your memories and private journal. Backups
+are created and stored on your own device or your own personal storage location. We do
+not have access to your backups, and they are not sent to us.
+
+
+5. DATA SECURITY
+
+To help protect the security of your memories and private journal, the App allows you to
+set a diary password (lock). Because your data is stored only on your device, keeping
+your device secure and remembering your password are important. We cannot recover a lost
+password or access your locked content on your behalf.
+
+
+6. CHILDREN'S PRIVACY
+
+The App does not collect any personal information from anyone, including children under
+the age of 13. The App is safe to use as it stores all data locally and does not transmit
+any data.
+
+
+7. THIRD-PARTY SERVICES
+
+The App does not integrate any third-party analytics, advertising, or tracking services
+that collect your data.
+
+
+8. CHANGES TO THIS PRIVACY POLICY
+
+We may update this Privacy Policy from time to time. Any changes will be reflected on this
+page with an updated "Last updated" date. We encourage you to review this policy
+periodically.
+
+
+9. CONTACT US
+
+If you have any questions or concerns about this Privacy Policy, please contact us at:
+
+Email: meetbearadmob@gmail.com
+
+
+By using My Diary, Journal with Lock, you agree to this Privacy Policy.
